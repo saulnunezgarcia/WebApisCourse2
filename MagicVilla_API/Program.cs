@@ -1,3 +1,4 @@
+using MagicVilla_API;
 using MagicVilla_API.Datos;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,11 +12,16 @@ builder.Services.AddControllers().AddNewtonsoftJson(); //Aqui se añadio para pod
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 builder.Services.AddDbContext<ApplicationDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")); //Asi se indica que utilice el defaultconnection 
     //definido en appsettings.json despues de haber creado la clase ApplicationDbcontext 
 });
+
+//Agregamos el servicio de los mapeos 
+
+builder.Services.AddAutoMapper(typeof(MappingConfig)); //Se escribe el nombre de la clase que tiene los mapeos
 
 var app = builder.Build();
 
