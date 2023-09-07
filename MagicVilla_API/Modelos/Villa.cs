@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MagicVilla_API.Modelos
@@ -8,6 +8,7 @@ namespace MagicVilla_API.Modelos
         [Key] //Asi se especifica que propiedad sera la clave primaria 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // Esto permite tener un control del Id de cada elemento en la base de datos 
         public int Id { get; set; }
+        [Required]
         public string Nombre { get; set; } //Se pueden agregar mas propiedades al modelo 
         public string Detalle { get; set; }
         [Required]

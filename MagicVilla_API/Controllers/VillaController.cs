@@ -73,7 +73,7 @@ namespace MagicVilla_API.Controllers
 
         // Y si solo quiero una sola villa?
 
-        [HttpGet("id:int", Name = "GetVilla")] //el id:int es para dos cosas, diferenciar del anterior get y de especificar que es un dato de tipo int 
+        [HttpGet("{id:int}", Name = "GetVilla")] //el id:int es para dos cosas, diferenciar del anterior get y de especificar que es un dato de tipo int 
         [ProducesResponseType(StatusCodes.Status200OK)] // Para documentar los codigos de estado, con Status.code se pueden ver los
                                                         // otros tipos de codigos de estado, el nombre es para referenciar esta ruta 
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -137,7 +137,7 @@ namespace MagicVilla_API.Controllers
                 {
                     //El codigo de if checa si encontro un registro igual al registro que se trata de ingresar, si eso es diferente de null, 
                     //entonces se encontro un nombre y se va a arrogar este modelo de error 
-                    ModelState.AddModelError("NombreExiste", "La Villa con ese nombre ya existe ");
+                    ModelState.AddModelError("ErrorMessages", "La Villa con ese nombre ya existe ");
                     return BadRequest(ModelState);
                 }
 
