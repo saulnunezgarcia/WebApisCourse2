@@ -3,6 +3,7 @@ using MagicVilla_API.Datos;
 using MagicVilla_API.Modelos;
 using MagicVilla_API.Modelos.DTO;
 using MagicVilla_API.Repositorio.IRepositorio;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +34,7 @@ namespace MagicVilla_API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         //Nuevo modelo sera una lista de villas 
         //Al escribir villa despues de IEnumerable, se especifica con ctrl+. que tome el directorio modelos
@@ -74,6 +76,7 @@ namespace MagicVilla_API.Controllers
         // Y si solo quiero una sola villa?
 
         [HttpGet("{id:int}", Name = "GetVilla")] //el id:int es para dos cosas, diferenciar del anterior get y de especificar que es un dato de tipo int 
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)] // Para documentar los codigos de estado, con Status.code se pueden ver los
                                                         // otros tipos de codigos de estado, el nombre es para referenciar esta ruta 
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -118,6 +121,7 @@ namespace MagicVilla_API.Controllers
         }
 
         [HttpPost] //Esto es para recibir datos
+        [Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -194,6 +198,7 @@ namespace MagicVilla_API.Controllers
         }
 
         [HttpDelete("{id:int}")]
+        [Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -232,6 +237,7 @@ namespace MagicVilla_API.Controllers
         }
 
         [HttpPut("{id:int}")] //Para actualizar un objeto 
+        [Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -271,6 +277,7 @@ namespace MagicVilla_API.Controllers
         // Para actualizar una sola propiedad por si el objeto tiene un monton de datos y si solo se busca actualizar uno en concreto 
 
         [HttpPatch("{id:int}")] //Para actualizar un objeto 
+        [Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
 

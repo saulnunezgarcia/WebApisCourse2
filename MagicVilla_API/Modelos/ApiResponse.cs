@@ -5,6 +5,11 @@ namespace MagicVilla_API.Modelos
 { //Esta clase se va a encargar de que todas las respuestas sean similares
     public class ApiResponse
     {
+        public ApiResponse() 
+        {
+            ErrorMessages = new List<string>();
+        }
+
         public HttpStatusCode statusCode { get; set; } //Almacena el codigo de estado 
         public bool IsExitoso { get; set; } = true; 
 

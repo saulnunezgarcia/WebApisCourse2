@@ -10,8 +10,11 @@ namespace MagicVilla_API.Datos
             
         }
 
+
+        public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Villa> Villas { get; set; }  //Esto hara que el modelo villa.cs se tome para formar la base de datos 
         public DbSet<NumeroVilla> NumeroVillas { get; set; }
+
                         
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
